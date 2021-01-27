@@ -9,7 +9,7 @@ import Container from './components/Container/Container';
 import { requestImages } from './services/requestImages';
 import Searchbar from 'components/Searchbar/Searchbar';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
-import Loader from 'react-loader-spinner';
+import Loader from './components/Loader/Loader';
 import Great from 'components/ImageGallery/Great';
 import Modal from './components/Modal/Modal';
 
@@ -20,6 +20,7 @@ export default class App extends Component {
     query: '',
     page: 1,
     modal: { show: false, alt: '', src: '' },
+    dataLength: 0,
   };
 
   componentDidMount() {
@@ -39,16 +40,22 @@ export default class App extends Component {
         .then(response => {
           if (response.data.hits.length === 0) {
             toast.error(`По запросу ${this.state.query} ничего не найдено`);
-            this.setState({ isLoading: false, query: '' });
+            this.setState({
+              isLoading: false,
+              query: '',
+              dataLength: response.data.hits.length,
+            });
           } else {
             this.updateGallery(response);
+            this.setState({ dataLength: response.data.hits.length });
           }
         })
         .catch(error => {
           if (error) {
             return toast.error(`Что-то пошло не так, попробуйте позже`);
           }
-        });
+        })
+        .finally(() => this.setState({ isLoading: false }));
   }
 
   onSubmitForm = query => {
@@ -81,6 +88,10 @@ export default class App extends Component {
   };
 
   loadMore = () => {
+    if (this.state.dataLength === 0)
+      return toast.error(
+        'По данному запросу боьше ничено нет, введите новый запрос.',
+      );
     this.setState(prevState => ({
       isLoading: true,
       page: prevState.page + 1,
@@ -108,15 +119,7 @@ export default class App extends Component {
       <Container>
         <Searchbar onSubmit={this.onSubmitForm} />
 
-        {isLoading && (
-          <Loader
-            className="wrapper"
-            type="ThreeDots"
-            color="#ffc107"
-            height={120}
-            width={120}
-          />
-        )}
+        {isLoading && <Loader />}
 
         {gallery.length > 0 ? (
           <ImageGallery

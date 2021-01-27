@@ -1,0 +1,59 @@
+.header {
+  font-family: 'Lobster';
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  color: #ffc107;
+
+  background-image: url(https://i.ytimg.com/vi/8yny_PR2IOo/maxresdefault.jpg);
+  background-size: contain;
+}
+
+.title {
+  font-size: 32px;
+  margin: 0;
+}
+@media screen and (max-width: 550px) {
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .title {
+    font-size: 15px;
+  }
+}
+
+.searchForm {
+  display: flex;
+}
+
+.formInput {
+  margin-right: 8px;
+}
+@media screen and (max-width: 550px) {
+  .formInput {
+    max-width: 120px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .formInput {
+    max-width: 90px;
+  }
+}
+
+.isHidden {
+  position: absolute;
+  top: 100;
+  left: 100;
+  margin: -1px;
+  padding: -1px;
+  opacity: 0;
+}

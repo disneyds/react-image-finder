@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import s from './ImageGallery.module.css';
 
 export default function ImageGalleryItem({
   image: {
@@ -14,32 +16,34 @@ export default function ImageGalleryItem({
 }) {
   return (
     <li
-      className="gallery-item"
+      className={s.galleryItem}
       data-large-image={largeImageURL}
       onClick={() => {
         openModal(largeImageURL, tags);
       }}
     >
-      <div className="photo-card">
+      <div className={s.photoCard}>
         <div className="image-wrapper">
-          <img className="photo-card__img" src={webformatURL} alt={tags} />
+          <img className={s.photoCardImg} src={webformatURL} alt={tags} />
         </div>
 
-        <div className="stats">
-          <p className="stats-item">
-            <i className="material-icons">thumb_up</i>
+        <div className={s.stats}>
+          <p className={s.statsItem}>
+            <i className={`material-icons ${s.materialIcons}`}>thumb_up</i>
             <span>{likes}</span>
           </p>
-          <p className="stats-item">
-            <i className="material-icons">visibility</i>
+          <p className={s.statsItem}>
+            <i className={`material-icons ${s.materialIcons}`}>visibility</i>
             <span>{views}</span>
           </p>
-          <p className="stats-item">
-            <i className="material-icons">comment</i>
+          <p className={s.statsItem}>
+            <i className={`material-icons ${s.materialIcons}`}>comment</i>
             <span>{comments}</span>
           </p>
-          <p className="stats-item">
-            <i className="material-icons">cloud_download</i>
+          <p className={s.statsItem}>
+            <i className={`material-icons ${s.materialIcons}`}>
+              cloud_download
+            </i>
             <span>{downloads}</span>
           </p>
         </div>
@@ -47,3 +51,13 @@ export default function ImageGalleryItem({
     </li>
   );
 }
+
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string,
+  largeImageURL: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  likes: PropTypes.number,
+  views: PropTypes.number,
+  comments: PropTypes.number,
+  downloads: PropTypes.number,
+};

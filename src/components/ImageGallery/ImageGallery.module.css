@@ -1,0 +1,91 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.great {
+  margin: auto;
+  text-align: center;
+  max-width: 500px;
+  font-family: 'Lobster';
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 8px;
+
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 876px) {
+  .gallery {
+    background-color: transparent;
+  }
+}
+
+.galleryItem {
+  margin: 15px;
+}
+
+.photoCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  object-fit: cover;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  width: 370px;
+  min-height: 400px;
+  height: 400px;
+
+  padding: 20px;
+}
+
+.photoCardImg {
+  height: 300px;
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.photo-card:hover,
+.photo-card:focus {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.statsItem {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.statsItem:hover,
+.statsItem:focus {
+  color: #ffc107;
+  cursor: pointer;
+}
+
+.materialIcons {
+  margin-right: 8px;
+}
+
+.photoCard:hover,
+.photoCard:focus {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}

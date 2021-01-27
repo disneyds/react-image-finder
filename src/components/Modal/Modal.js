@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Loader from 'react-loader-spinner';
+import Loader from '../Loader/Loader';
+import PropTypes from 'prop-types';
+import s from './Modal.module.css';
 
 export default class Modal extends Component {
   state = {
@@ -15,30 +17,28 @@ export default class Modal extends Component {
     return (
       <>
         <div
-          className="Overlay"
+          className={s.overlay}
           onClick={e => {
             if (e.target === e.currentTarget) openModal();
           }}
         >
-          <div className="Modal">
+          <div className={s.modal}>
             <img
-              className="imgModal"
+              className={s.imgModal}
               onLoad={this.loaded}
               src={src}
               alt={alt}
             />
-            {this.state.isLoading && (
-              <Loader
-                className="wrapper"
-                type="ThreeDots"
-                color="#ffc107"
-                height={120}
-                width={120}
-              />
-            )}
+            {this.state.isLoading && <Loader />}
           </div>
         </div>
       </>
     );
   }
 }
+
+Modal.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
+};
